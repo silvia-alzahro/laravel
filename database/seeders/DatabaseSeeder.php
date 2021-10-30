@@ -13,6 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        // pengiriman data ke dalam table di DB
+        $this->call(PostsSeeder::class);
+        //panggil seeder yang lain
+        $this->call(barangSeeder::class);
+        $this->call(pesananSeeder::class);
+        $this->call(pembelianSeeder::class);
+        $this->call(pembeliSeeder::class);
+        $this->call(supplierSeeder::class);
+        
     }
 }

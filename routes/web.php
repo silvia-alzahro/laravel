@@ -116,3 +116,84 @@ Route::get('bio/{nama?}/{alamat?}/{jk?}/{tb?}/{bb?}', function ($nama=null,$alam
     return view('bio', compact('nama','alamat','jk','tb','bb'));
 
 });
+
+
+//mengakses data melalui model
+Route::get('testmodel', function () {
+    $query = App\Models\Post::all();
+    return $query;
+});
+
+//mencari data berdasarkan parameter 'id'
+Route::get('testmodel/{id}', function ($id) {
+    $query = App\Models\Post::find($id);
+    return $query;
+});
+
+//mencari data berdasarkan field 'title' yang sama dengan
+//parameter 's'
+Route::get('testmodel-cari/{search}', function ($s) {
+    $query = App\Models\Post::where('title', 'like', "%$s%")
+       ->get();
+    return $query;
+});
+
+//mengubah judul dari data ke 2 berdasarkan 'id'
+Route::get('testmodel-update', function () {
+    $query = App\Models\Post::find(2);
+    $query->title = "Bane Si Bajak Laut";
+    $query->save();
+    return $query;
+});
+
+//menambah data baru
+Route::get('testmodel-add', function () {
+    $query = new App\Models\Post();
+    $query->title = "Sholawat Penghapus Maksiat";
+    $query->content = "Lorem ipsum sit amet dolor";
+    $query->save();
+    return $query;
+});
+
+//menghapus tabel
+Route::get('testmodel-delete/{id}', function ($id) {
+    $query = App\Models\Post::find($id);
+    $query->delete();
+    return redirect('/testmodel');
+});
+
+//silahkan buat model dari setiap table yang sudah dibuat
+//kemudian akses datanya dari setiap table
+//supplier -> muncu semua data supplier
+
+
+
+//mengakses data melalui model
+Route::get('barang', function () {
+    $query = App\Models\barang::all();
+    return $query;
+});
+
+//mengakses data melalui model
+Route::get('pesanan', function () {
+    $query = App\Models\pesanan::all();
+    return $query;
+});
+
+//mengakses data melalui model
+Route::get('pembelian', function () {
+    $query = App\Models\pembelian::all();
+    return $query;
+});
+
+//mengakses data melalui model
+Route::get('pembeli', function () {
+    $query = App\Models\pembeli::all();
+    return $query;
+});
+
+//mengakses data melalui model
+Route::get('supplier', function () {
+    $query = App\Models\supplier::all();
+    return $query;
+});
