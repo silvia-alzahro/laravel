@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+//import controller yang akan digunakan
+use App\Http\Controllers\MyController;
 
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -197,3 +199,23 @@ Route::get('supplier', function () {
     $query = App\Models\supplier::all();
     return $query;
 });
+
+//mencari data berdasarkan parameter 'id'
+Route::get('pembelian/{id}/{}', function ($id) {
+    $query = App\Models\Post::find($id);
+    return $query;
+});
+
+//route dengan controller
+Route::get('data-siswa', [MyController::class, 'index']);
+Route::get('posts', [MyController::class, 'posting']);
+
+//2 method
+Route::get('pembelian', [MyController::class, 'pembelian']);
+Route::get('singlepembelian/{id}', [MyController::class, 'singlepembelian']);
+
+Route::get('hero', [MyController::class, 'hero']);
+Route::get('hero/{id}', [MyController::class, 'singlehero']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

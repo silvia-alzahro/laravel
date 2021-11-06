@@ -34,7 +34,7 @@ class barangSeeder extends Seeder
             ['nama_barang' => 'Sepatu converse',
             'varian' => 'Hitam',
             'harga_beli' => 80000,
-            'harga_jual' => 9000]
+            'harga_jual' => 90000]
         ];
         DB::table('barang')->insert($data);
     }
